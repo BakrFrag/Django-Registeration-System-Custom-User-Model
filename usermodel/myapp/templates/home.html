@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+{% if messages %}
+<div class="alert" role="alert">
+{% for message in messages %}
+ <h3 class="{{message.tags}}"> {{message}}</h3>
+ {% endfor %}
+</div>
+{% endif %}
+<h1>Welcome To Our Home Page</h1>
+{% if user.is_authenticated %}
+<h1>{{user.username}} You Are Logining Now</h1>
+<h1><a class="btn btn-primary" href="{%url 'password_change' %}">Change Your Password</a></h1>
+<h1><a class="btn btn-primary" href="{%url 'logout' %}">Logout</a></h1>
+{% else %}
+<h1>Now You Are Loged Out</h1>
+<h1><a class="btn btn-primary" href="{%url 'login' %}">LogIn</a></h1>
+<h1><a class="btn btn-primary" href="{%url 'register' %}">Register</a></h1>
+<h1><a class="btn btn-primary" href="{%url 'password_reset' %}">Password Reset</a></h1>
+{% endif %}
+{% endblock content %}
